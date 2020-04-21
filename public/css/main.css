@@ -1,0 +1,245 @@
+:root {
+    /*colors*/
+    --background_color: rgb(255, 255, 255);
+    --primary_color: rgb(0, 153, 255);
+    --text_primary: rgb(255, 255, 255);
+    --secondary_color: rgb(255, 230, 0);
+    --text_secondary: rgb(14, 190, 243);
+    --accent_color: rgb(0, 120, 255);
+    --surface_color: rgb(255, 255, 255);
+    --error_color: rgb(14, 190, 243);
+    --textbox: rgb(214, 214, 214);
+    --textbox_text: rgb(78, 78, 78);
+    --send_bubble_color: rgb(0, 153, 255);
+    --send_text_color: rgb(255, 255, 255);
+    --receive_bubble_color: rgb(214, 214, 214);
+    --receive_text_color: rgb(78, 78, 78);
+    /*sizes*/
+    --bar_height: 50px;
+    --conversation_font_size: 14px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+#chat-section {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    float: right;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background_color);
+}
+
+#chat-top-bar {
+    display: block;
+    float: right;
+    position: relative;
+    top: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 100%;
+    height: var(--bar_height);
+    background-color: var(--background_color);
+    color: var(--primary_color);
+}
+
+#chat-top-bar #name {
+    float: left;
+    margin: calc(var(--bar_height)/6) 20px;
+    text-align: left;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+#chat-top-bar #invite-button {
+    margin: calc(var(--bar_height)/9) 8px;
+    float: right;
+}
+
+#conversation {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    float: right;
+    overflow: auto;
+    font-weight: 600;
+    font-size: var(--conversation_font_size);
+    width: 100%;
+    height: calc(100% - 2*(var(--bar_height)));
+}
+
+.bubblewrap {
+    display: block;
+    float: right;
+    width: 100%;
+}
+
+.send-bubble {
+    padding: 14px;
+    margin: 10px;
+    border-radius: 15px;
+    position: relative;
+    box-sizing: border-box;
+    max-width: 600px;
+    display: block;
+    float: right;
+    background-color: var(--send_bubble_color);
+    color: var(--send_text_color);
+}
+
+.send-bubble:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-left-color: var(--send_bubble_color);
+    border-right: 0;
+    margin-top: -8px;
+    margin-right: -8px;
+}
+
+.receive-bubble {
+    padding: 14px;
+    margin: 10px;
+    border-radius: 15px;
+    position: relative;
+    box-sizing: border-box;
+    max-width: 600px;
+    display: block;
+    float: left;
+    background-color: var(--receive_bubble_color);
+    color: var(--receive_text_color);
+}
+
+.receive-bubble:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-right-color: var(--receive_bubble_color);
+    border-left: 0;
+    margin-top: -8px;
+    margin-left: -8px;
+}
+
+#bottom {
+    position: fixed;
+    bottom: 0;
+    width: inherit;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    height: var(--bar_height);
+    background-color: var(--background_color);
+}
+
+.button {
+    color: #FFF;
+    background-color: var(--primary_color);
+    font-weight: bolder;
+    min-width: fit-content;
+    border-radius: 18px;
+    padding: 0.8em;
+    border: none;
+    cursor: pointer;
+    appearance: none;
+    outline: none;
+}
+
+#messagebox {
+    border: rgb(190, 190, 190) 1px solid;
+    border-radius: 18px;
+    background: var(--textbox);
+    padding: 0.8em;
+    outline: none;
+    color: var(--textbox_text);
+    width: 100%;
+}
+
+#bottom * {
+    margin: 0 4px;
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: var(--background_color);
+    color: var(--textbox_text);
+    text-align: center;
+    border-radius: 18px;
+    padding: 0.8em;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    -webkit-box-shadow: 0px 0px 17px -12px rgba(0, 0, 0, 0.88);
+    -moz-box-shadow: 0px 0px 17px -12px rgba(0, 0, 0, 0.88);
+    box-shadow: 0px 0px 17px -12px rgba(0, 0, 0, 0.88);
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}

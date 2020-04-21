@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="chat-section">
+
+        <div id="chat-top-bar">
+            <div id=name>Chat</div>
+            <button class="button" id="invite-button" title="invite"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+        </div>
+
+        <div id="conversation">
+        </div>
+
+        <div id="bottom">
+            <input id="messagebox" type="text" placeholder="Type a message...">
+            <button class="button" id="send-button" title="send"><i class="fa fa-paper-plane" aria-hidden="true"></i>Send</button>
+        </div>
+        
+        <div id="snackbar">Some message..</div>
+
+        <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
+        <script src="./js/main.js"></script>
+</body>
+
+</html>
