@@ -1,2 +1,2 @@
 # p2p-messenger
-P2P messenger implemented using webRTC
+A very simple implementation of message exchange using webRTC with PeerJS library. Requires no server side logic.
